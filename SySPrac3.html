@@ -1,0 +1,127 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Practica 3 Se&ntilde;ales en Tiempo Continuo</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-02"><meta name="DC.source" content="SySPrac3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Practica 3 Se&ntilde;ales en Tiempo Continuo</h1><!--introduction--><p>Grupo: 2TV2</p><p>Materia: Se&ntilde;ales y Sistemas</p><p>Alumnos:</p><p>Maestro: Dr. Rafael Mart&iacute;nez Mart&iacute;nez</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduccion</a></li><li><a href="#8">Contenido</a></li></ul></div><h2 id="1">Introduccion</h2><p><b>MatLab</b></p><p>MATLAB (Matrix Laboratory, &#8220;laboratorios de matrices&#8221;). Software matem&aacute;tico con entorno de desarrollo integrado (IDE) que tiene un lenguaje de programaci&oacute;n propio (Lenguaje M) y es multiplataforma (Unix, Windows y Apple Mac Os X). Software de un gran uso en Centros de Investigaci&oacute;n y Desarrollo as&iacute; como en universidades. En 1984 surge la primera versi&oacute;n, creado por Cleve Moler, con la idea de usar paquetes de subrutinas escritas en Fortran en los cursos de An&aacute;lisis Num&eacute;rico y Algebra Lineal, sin tener una necesidad de programas que usaran este lenguaje.</p><p>El lenguaje de programaci&oacute;n M se cre&oacute; en 1970 proporcionando un acceso sencillo al Software de matrices LINPACK y EISPACK sin tener que hacer uso del lenguaje Fortran. Ya en 2004 se apreciaba que MATLAB era usado por aproximadamente m&aacute;s de un mill&oacute;n de personas, tanto acad&eacute;micos como empresarios. Dentro de sus principales funciones se encuentran:</p><div><ol><li>Manipulaci&oacute;n de Matrices.</li><li>La representaci&oacute;n de datos y funciones.</li><li>Implementaci&oacute;n de algoritmos.</li><li>Creaci&oacute;n de interfaces de usuario (GUI).</li><li>Comunicaci&oacute;n con programas en otros lenguajes y con otros dispositivos Hardware.</li></ol></div><p>Aqui podra encontrar un libro para apoyarse sobre <a href="http://www.dm.unibo.it/~piccolom/didattica/num_met/SAmatlab_09.pdf">Matlab</a></p><p><b>Octave</b></p><p>Octave es un lenguaje de alto nivel para realizar c&aacute;lculos num&eacute;ricos en el ordenador, y tambi&eacute;n es un programa capaz de interpretar este lenguaje y realizar los c&aacute;lculos. Octave ofrece una interfaz de usuario interactiva, orientada a l&iacute;nea de comandos, pero tambi&eacute;n puede ser utilizado en modo no interactivo, leyendo sus &oacute;rdenes de fichero. Octave originalmente fue desarrollado para facilitar la tarea a los estudiantes de Ingenier&iacute;a Qu&iacute;mica de la universidad de Texas, sin que estos tuvieran que enfrentarse a las dificultades de la programaci&oacute;n. Su flexibilidad en seguida lo hizo popular y su uso se expandi&oacute; a otros problemas relacionados con el &aacute;lgebra lineal y las ecuaciones diferenciales y favoreci&oacute; su desarrollo, agregando las aportaciones de la comunidad de usuarios. Otros programas de caracter&iacute;sticas similares, y hasta cierto punto compatibles, son son el lenguaje R de la FSF, Matlab y Scilab. Estos dos &uacute;ltimos propietarios. Octave es software libre (bajo licencia GNU), lo que significa que se puede usar y redistribuir libremente, y que cualquiera puede ayudar para mejorarlo. Octave est&aacute; disponible en Internet en <a href="http://www.octave.org">http://www.octave.org</a>.</p><p><a href="https://cimec.org.ar/foswiki/pub/Main/Cimec/MetodosNumericosYSimulacion/metnums.pdf">Conceptos basicos en octave</a></p><p><b>Python</b></p><p>Python es un lenguaje de programaci&oacute;n el cual fue creado por el holand&eacute;s Guido van Rossum en los a&ntilde;os 90. Su nombre esta inspirado en el grupo humorista brit&aacute;nico Monty Python. Este lenguaje es caracterizado por su simplicidad y r&aacute;pido aprendizaje. Si queremos hacer el cl&aacute;sico hola mundo en este lenguaje, nos basta con escribir print &#8220;hola mundo&#8221;. Las caracter&iacute;sticas principales de este lenguaje son cuatro:</p><div><ol><li>Tipado din&aacute;mico, no es necesario indicar el tipo de variable al momento de declararlo ya que lo identifica automaticamente.</li><li>Fuertemente tipado, no se permite tratar de manera implicita a una variable como si fuera de otro tipo.</li><li>Multiplataforma,  se refiere a que no depende de un sistema operativo en especifico para funcionar bien.</li><li>Multiparadigma, python es un lenguaje orientado a diversos paradigmas entre ellos tiene la programacion orientada a objetos, programaci&oacute;n estructurada, programaci&oacute;n funcional y programaci&oacute;n orientada a aspectos.</li></ol></div><p><a href="https://legacy.gitbook.com/book/swaroopch/byte-of-python/details">enlace de descarga o visualizacion sobre un libro para aprender python</a></p><h2 id="8">Contenido</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Practica 3 Señales en Tiempo Continuo
+%
+% Grupo: 2TV2
+%
+% Materia: Señales y Sistemas
+%
+% Alumnos:
+%
+% Maestro: Dr. Rafael Martínez Martínez
+%
+%
+%% Introduccion
+%%
+% *MatLab*
+%
+% MATLAB (Matrix Laboratory, “laboratorios de matrices”). Software matemático con entorno de desarrollo integrado (IDE) que tiene un lenguaje de programación propio (Lenguaje M) y es multiplataforma (Unix, Windows y Apple Mac Os X).
+% Software de un gran uso en Centros de Investigación y Desarrollo así como en universidades.
+% En 1984 surge la primera versión, creado por Cleve Moler, con la idea de usar paquetes de subrutinas escritas en Fortran en los cursos de Análisis Numérico y Algebra Lineal, sin tener una necesidad de programas que usaran este lenguaje.
+%
+% El lenguaje de programación M se creó en 1970 proporcionando un acceso sencillo al Software de matrices LINPACK y EISPACK sin tener que hacer uso del lenguaje Fortran.
+% Ya en 2004 se apreciaba que MATLAB era usado por aproximadamente más de un millón de personas, tanto académicos como empresarios.
+% Dentro de sus principales funciones se encuentran:
+%
+% # Manipulación de Matrices.
+% # La representación de datos y funciones.
+% # Implementación de algoritmos.
+% # Creación de interfaces de usuario (GUI).
+% # Comunicación con programas en otros lenguajes y con otros dispositivos Hardware.
+%%
+% Aqui podra encontrar un libro para apoyarse sobre <http://www.dm.unibo.it/~piccolom/didattica/num_met/SAmatlab_09.pdf Matlab>
+%%
+% *Octave*
+%
+% Octave es un lenguaje de alto nivel para realizar cálculos numéricos en el ordenador, y también es un programa capaz de interpretar este lenguaje y realizar los cálculos. Octave ofrece una interfaz de usuario interactiva, orientada a línea de comandos, pero también puede ser utilizado en modo no interactivo, leyendo sus órdenes de fichero.
+% Octave originalmente fue desarrollado para facilitar la tarea a los estudiantes de Ingeniería Química de la universidad de Texas, sin que estos tuvieran que enfrentarse a las dificultades de la programación. Su flexibilidad en seguida lo hizo popular y su uso se expandió a otros problemas relacionados con el álgebra lineal y las ecuaciones diferenciales y favoreció su desarrollo, agregando las aportaciones de la comunidad de usuarios.
+% Otros programas de características similares, y hasta cierto punto compatibles, son son el lenguaje R de la FSF, Matlab y Scilab. Estos dos últimos propietarios. Octave es software libre (bajo licencia GNU), lo que significa que se puede usar y redistribuir libremente, y que cualquiera puede ayudar para mejorarlo. Octave está disponible en Internet en http://www.octave.org.
+%
+%%
+% <https://cimec.org.ar/foswiki/pub/Main/Cimec/MetodosNumericosYSimulacion/metnums.pdf
+% Conceptos basicos en octave>
+%%
+% *Python*
+%
+% Python es un lenguaje de programación el cual fue creado por el holandés Guido van Rossum en los años 90. Su nombre esta inspirado en el grupo humorista británico Monty Python.
+% Este lenguaje es caracterizado por su simplicidad y rápido aprendizaje. Si queremos hacer el clásico hola mundo en este lenguaje, nos basta con escribir print “hola mundo”.
+% Las características principales de este lenguaje son cuatro:
+%
+% # Tipado dinámico, no es necesario indicar el tipo de variable al momento de declararlo ya que lo identifica automaticamente.
+% # Fuertemente tipado, no se permite tratar de manera implicita a una variable como si fuera de otro tipo.
+% # Multiplataforma,  se refiere a que no depende de un sistema operativo en especifico para funcionar bien.
+% # Multiparadigma, python es un lenguaje orientado a diversos paradigmas entre ellos tiene la programacion orientada a objetos, programación estructurada, programación funcional y programación orientada a aspectos.
+%
+%%
+% <https://legacy.gitbook.com/book/swaroopch/byte-of-python/details enlace de descarga o visualizacion sobre un libro para aprender python>
+%% Contenido
+##### SOURCE END #####
+--></body></html>
